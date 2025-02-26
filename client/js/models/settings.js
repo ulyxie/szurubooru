@@ -11,13 +11,13 @@ const defaultSettings = {
     upscaleSmallPosts: false,
     endlessScroll: false,
     keyboardShortcuts: true,
-    transparencyGrid: true,
+    transparencyGrid: false,
     fitMode: "fit-both",
     tagSuggestions: true,
     autoplayVideos: false,
     postsPerPage: 42,
     tagUnderscoresAsSpaces: false,
-    darkTheme: false,
+    darkTheme: true,
     postFlow: false,
 };
 
