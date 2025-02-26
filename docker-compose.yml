@@ -5,9 +5,11 @@
 services:
 
   server:
-    image: szurubooru/server:latest
+#    image: szurubooru/server:latest
+    build: server
     depends_on:
       - sql
+    restart: unless-stopped
     environment:
       ## These should be the names of the dependent containers listed below,
       ## or FQDNs/IP addresses if these services are running outside of Docker
@@ -25,7 +27,9 @@ services:
       - "./server/config.yaml:/opt/app/config.yaml"
 
   client:
-    image: szurubooru/client:latest
+#    image: szurubooru/client:latest
+    build: client
+    restart: unless-stopped
     depends_on:
       - server
     environment:
@@ -34,7 +38,7 @@ services:
     volumes:
       - "${MOUNT_DATA}:/data:ro"
     ports:
-      - "${PORT}:80"
+      - "${PORT:-3000}:80"
 
   sql:
     image: postgres:11-alpine
@@ -42,5 +46,7 @@ services:
     environment:
       POSTGRES_USER:
       POSTGRES_PASSWORD:
+    ports:
+     - "${EXPOSED_POSTGRES_PORT:-34517}:5432"
     volumes:
       - "${MOUNT_SQL}:/var/lib/postgresql/data"
