@@ -29,6 +29,7 @@ def upgrade():
         sa.Column("image_width", sa.Integer(), nullable=True),
         sa.Column("image_height", sa.Integer(), nullable=True),
         sa.Column("flags", sa.Integer(), nullable=False),
+        sa.Column("description", sa.UnicodeText, nullable=True, default=""),
         sa.Column("auto_fav_count", sa.Integer(), nullable=False),
         sa.Column("auto_score", sa.Integer(), nullable=False),
         sa.Column("auto_feature_count", sa.Integer(), nullable=False),

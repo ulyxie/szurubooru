@@ -103,6 +103,7 @@ privileges:
     'posts:edit:content':           power
     'posts:edit:flags':             regular
     'posts:edit:notes':             regular
+    'posts:edit:desc':              regular
     'posts:edit:relations':         regular
     'posts:edit:safety':            power
     'posts:edit:source':            regular

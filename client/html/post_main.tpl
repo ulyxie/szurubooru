@@ -53,6 +53,7 @@
         <div class='post-container'></div>
 
         <div class='after-mobile-controls'>
+            <div class='description'></div>
             <% if (ctx.canCreateComments) { %>
                 <h2>Add comment</h2>
                 <div class='comment-form-container'></div>

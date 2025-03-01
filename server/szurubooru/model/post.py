@@ -110,7 +110,6 @@ class PostNote(Base):
 
     post = sa.orm.relationship("Post")
 
-
 class PostRelation(Base):
     __tablename__ = "post_relation"
 
@@ -222,6 +221,7 @@ class Post(Base):
     canvas_width = sa.Column("image_width", sa.Integer)
     canvas_height = sa.Column("image_height", sa.Integer)
     mime_type = sa.Column("mime-type", sa.Unicode(32), nullable=False)
+    desc = sa.Column("description", sa.UnicodeText, nullable=True, default="")
 
     # foreign tables
     user = sa.orm.relationship("User")

@@ -114,6 +114,10 @@ class Post extends events.EventTarget {
         return this._notes;
     }
 
+    get desc() {
+        return this._desc;
+    }
+
     get comments() {
         return this._comments;
     }
@@ -276,6 +280,9 @@ class Post extends events.EventTarget {
         }
         if (this._source !== this._orig._source) {
             detail.source = this._source;
+        }
+        if (this._desc !== this._orig._desc) {
+            detail.desc = this._desc;
         }
 
         let apiPromise = this._id

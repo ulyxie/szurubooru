@@ -197,6 +197,7 @@ class PostSerializer(serialization.BaseSerializer):
             "favoritedBy": self.serialize_favorited_by,
             "hasCustomThumbnail": self.serialize_has_custom_thumbnail,
             "notes": self.serialize_notes,
+            "desc": self.serialize_desc,
             "comments": self.serialize_comments,
             "pools": self.serialize_pools,
         }
@@ -327,6 +328,9 @@ class PostSerializer(serialization.BaseSerializer):
             [serialize_note(note) for note in self.post.notes],
             key=lambda x: x["polygon"],
         )
+
+    def serialize_desc(self) -> Any:
+        return self.post.desc
 
     def serialize_comments(self) -> Any:
         return [
@@ -777,6 +781,11 @@ def update_post_notes(post: model.Post, notes: Any) -> None:
         post.notes.append(
             model.PostNote(polygon=note["polygon"], text=str(note["text"]))
         )
+
+
+def update_post_desc(post: model.Post, desc: str) -> None:
+    assert post
+    post.desc = desc
 
 
 def update_post_flags(post: model.Post, flags: List[str]) -> None:

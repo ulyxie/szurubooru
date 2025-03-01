@@ -187,6 +187,9 @@ class PostMainController extends BasePostController {
         if (e.detail.source !== undefined && e.detail.source !== null) {
             post.source = e.detail.source;
         }
+        if (e.detail.desc !== undefined && e.detail.desc !== null) {
+            post.desc = e.detail.desc;
+        }
         post.save().then(
             () => {
                 this._view.sidebarControl.showSuccess("Post saved.");

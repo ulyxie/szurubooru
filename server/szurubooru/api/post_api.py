@@ -72,6 +72,7 @@ def create_post(
         source = ctx.get_param_as_string("contentUrl", default="")
     relations = ctx.get_param_as_int_list("relations", default=[])
     notes = ctx.get_param_as_list("notes", default=[])
+    desc = ctx.get_param_as_string("desc", default="")
     flags = ctx.get_param_as_string_list(
         "flags", default=posts.get_default_flags(content)
     )
@@ -85,6 +86,7 @@ def create_post(
     posts.update_post_source(post, source)
     posts.update_post_relations(post, relations)
     posts.update_post_notes(post, notes)
+    posts.update_post_desc(post, desc)
     posts.update_post_flags(post, flags)
     if ctx.has_file("thumbnail"):
         posts.update_post_thumbnail(post, ctx.get_file("thumbnail"))
@@ -159,6 +161,9 @@ def update_post(ctx: rest.Context, params: Dict[str, str]) -> rest.Response:
     if ctx.has_param("notes"):
         auth.verify_privilege(ctx.user, "posts:edit:notes")
         posts.update_post_notes(post, ctx.get_param_as_list("notes"))
+    if ctx.has_param("desc"):
+        auth.verify_privilege(ctx.user, "posts:edit:desc")
+        posts.update_post_desc(post, ctx.get_param_as_string("desc"))
     if ctx.has_param("flags"):
         auth.verify_privilege(ctx.user, "posts:edit:flags")
         posts.update_post_flags(post, ctx.get_param_as_string_list("flags"))
