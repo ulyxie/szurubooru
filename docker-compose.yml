@@ -22,6 +22,7 @@ services:
       #POSTGRES_PORT: 5432
       #LOG_SQL: 0 (1 for verbose SQL logs)
       THREADS:
+    #command: ["/user/local/bin/wait-for-it.sh", "postgre:5432", "--timeout=30", "--", "/opt/app/docker-start.sh"]
     volumes:
       - "${MOUNT_DATA}:/data"
       - "./server/config.yaml:/opt/app/config.yaml"
@@ -49,4 +50,4 @@ services:
     ports:
      - "${EXPOSED_POSTGRES_PORT:-34517}:5432"
     volumes:
-      - "${MOUNT_SQL}:/var/lib/postgresql/data"
+     - "${MOUNT_SQL}:/var/lib/postgresql/data"
